@@ -2101,13 +2101,23 @@ namespace Ched.UI
         }
 
 
-        public void LoadScore(Score score)
+        public void Initialize()
         {
             SelectedRange = SelectionRange.Empty;
             CurrentTick = SelectedRange.StartTick;
+            Invalidate();
+        }
+
+        public void Initialize(Score score)
+        {
+            Initialize();
+            UpdateScore(score);
+        }
+
+        public void UpdateScore(Score score)
+        {
             Notes = new NoteCollection(score.Notes);
             ScoreEvents = score.Events;
-            OperationManager.Clear();
             Invalidate();
         }
 
